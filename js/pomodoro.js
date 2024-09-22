@@ -13,14 +13,14 @@ let intervalId
 const eltCompletedSessions = document.getElementById('session-completed')
 let countCompletedSessions = 0
 
+funcUpdateProgress()
 
 const startBtn = document.getElementById('btn-start')
 startBtn.addEventListener('click', () => {
     isPaused = false
 
-    body.classList.add('timer-running')
-
     if(isWorking) {
+        body.classList.add('timer-running')
         body.classList.remove('timer-paused')
     } else {
         body.classList.add('rest-mode');
@@ -40,6 +40,10 @@ pauseBtn.addEventListener('click', () => {
     body.classList.add('timer-paused')
 })
 
+const resetBtn = document.getElementById('btn-reset')
+resetBtn.addEventListener('click', () => {
+    location.reload()
+})
 
 function funcUpdateTimer() {
     if(!isPaused) {
@@ -51,7 +55,7 @@ function funcUpdateTimer() {
             if (isWorking) {
                 remainingTime = workDuration;
                 body.classList.remove('rest-mode')
-                body.classList.remove('timer-running')
+                body.classList.add('timer-running')
             } else {
                 remainingTime = restDuration
                 body.classList.add('rest-mode')
@@ -62,7 +66,6 @@ function funcUpdateTimer() {
             }
 
             isPaused = false
-            body.classList.remove('timer-work-active')
         }
         
         funcUpdateProgress();
@@ -73,7 +76,13 @@ function funcUpdateProgress() {
     const radius = 45
     const circumference = 2 * Math.PI * radius
 
-    const totalDuration = isWorking ? workDuration : restDuration
+    let totalDuration;
+
+    if (isWorking) {
+        totalDuration = workDuration;
+    } else {
+        totalDuration = restDuration;
+    }
 
     const dashOffset = circumference * remainingTime / totalDuration
 

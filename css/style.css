@@ -64,7 +64,7 @@ body {
 }
 
 #pomodoro-bg{
-    background-image: url(./../img/bg.gif);
+    background-image: url(./../img/bg_lofi.gif);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -86,10 +86,9 @@ body.rest-mode #pomodoro-bg {
     margin: 0 auto;
     padding: 55px 25px 25px 25px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.30);
+    background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7.7px);
-    -webkit-backdrop-filter: blur(7.7px);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.60); 
 }
 
@@ -111,7 +110,7 @@ body.rest-mode #pomodoro-bg {
                 fill: none;
             }
             .circle-progress {
-                stroke: red;
+                stroke: rgb(255, 88, 88);
                 stroke-width: 7;
                 stroke-linecap: round;
                 stroke-dasharray: 283;
@@ -121,14 +120,16 @@ body.rest-mode #pomodoro-bg {
             }
             #timer-time,
             #timer-pause,
-            #timer-rest {
+            #timer-rest,
+            #timer-work {
                 fill: rgb(255, 255, 255);
             }
             #timer-time{
                 text-anchor: middle;
             }
             #timer-pause,
-            #timer-rest {
+            #timer-rest,
+            #timer-work {
                 text-anchor: middle;
                 opacity: 0;
             }
@@ -140,69 +141,109 @@ body.rest-mode #pomodoro-bg {
         border-radius: 50px;
         background: white;
         display: flex;
-        color: grey;
+        color: rgb(70, 70, 70);
         align-items: center;
+        text-align: center;
     }
         #timer-session p {
             padding: 12px;
         }
-        p #session-label {
+        p#session-label {
             width: 80%;
             text-align: center;
         }
-        p #session-completed {
+        p#session-completed {
             font-weight: bold;
-            color: grey;
+            color: rgb(70, 70, 70);
             font-size: 20px;
         }
 
     /**
     * Function
-    */        
+    */    
     #timer-function {
-        height: 145px;
-        position: relative;
-    }
-
-    #function-btn {
-        width: 100%;
-        height: 100%;
+        height: auto;
         position: relative;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-    }     
+    }
+    
+        #function-btn {
+            width: 100%;
+            height: auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 70px;
+            margin-bottom: 100px;
+        }
+        
             #function-btn button {
-            background-color: rgb(255, 0, 0);
-            border: none;
-            cursor: pointer;
-            width: 60px;
-            height: 60px;
-            font-size: 30px;
-            color: white;
-            border-radius: 100px;
-            display: block;
-            position: absolute;
+                background-color: rgb(255, 88, 88);
+                border: none;
+                cursor: pointer;
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                color: white;
+                border-radius: 100px;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            #btn-pause, #btn-start {
+                left: 30%;
+                transform: translateX(-50%);
+            }
+            
+            #btn-pause {
+                z-index: 1;
+            }
+            
+            #btn-start {
+                z-index: 2;
+            }
+            
+            #btn-reset {
+                right: 20%;
+            }
+    
+        #function-settings {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 70px;
         }
         
-        #btn-pause, #btn-start {
-            left: 30%;
-            transform: translateX(-50%); 
-        }
-        
-        #btn-pause {
-            z-index: 1;
-        }
-        
-        #btn-start {
-            z-index: 2; /
-        }
-        
-        #btn-reset {
-            right: 20%;
-        }
-        
-        
+            #function-settings button{
+                background-color: rgb(255, 88, 88);
+                border: none;
+                cursor: pointer;
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                color: white;
+                border-radius: 10px;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+
+            #btn-settings {
+                z-index: 2;
+            }
+
+            #btn-close {
+                z-index: 1;
+            }
 
         body.timer-running #btn-start,
         body.rest-mode #btn-start {
@@ -216,9 +257,11 @@ body.rest-mode #pomodoro-bg {
 
         body.timer-paused:not(.rest-mode) #timer-pause,
         body.rest-mode #timer-rest,
-        body.rest-mode.timer-paused #timer-pause {
+        body.rest-mode.timer-paused #timer-pause,
+        body:not(.rest-mode) #timer-work {
             opacity: 1;
         }
-        body.rest-mode.timer-paused #timer-rest {
+        body.rest-mode.timer-paused #timer-rest,
+        body.timer-paused #timer-work {
             opacity: 0;
         }
