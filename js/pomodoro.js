@@ -1,7 +1,7 @@
 
 const body = document.body
-const workDuration = 1 * 60
-const restDuration = 1 * 60
+const workDuration = 10
+const restDuration = 10
 const timerTime = document.getElementById('timer-time')
 const circleProgress = document.querySelector('.circle-progress')
 
@@ -72,8 +72,6 @@ function funcUpdateTimer() {
 function funcUpdateProgress() {
     const radius = 45
     const circumference = 2 * Math.PI * radius
-
-    console.log(circumference)
 
     const totalDuration = isWorking ? workDuration : restDuration
 
