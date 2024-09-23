@@ -83,8 +83,9 @@ body.rest-mode #pomodoro-bg {
     position: relative;
     width: 100%;
     max-width: 350px;
+    height: 90%;
     margin: 0 auto;
-    padding: 55px 25px 25px 25px;
+    padding: 55px 25px 55px 25px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -105,7 +106,7 @@ body.rest-mode #pomodoro-bg {
             height: 270px;
         }
             .circle-background {
-                stroke: white;
+                stroke: rgba(255, 255, 255, 0.5);
                 stroke-width: 7;
                 fill: none;
             }
@@ -139,7 +140,7 @@ body.rest-mode #pomodoro-bg {
     */
     #timer-session {
         border-radius: 50px;
-        background: white;
+        background: rgba(255, 255, 255, 0.8);
         display: flex;
         color: rgb(70, 70, 70);
         align-items: center;
@@ -177,8 +178,8 @@ body.rest-mode #pomodoro-bg {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 70px;
-            margin-bottom: 100px;
+            margin-top: 60px;
+            margin-bottom: 60px;
         }
         
             #function-btn button {
@@ -218,15 +219,15 @@ body.rest-mode #pomodoro-bg {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 70px;
+            margin-bottom: 0px;
         }
         
             #function-settings button{
                 background-color: rgb(255, 88, 88);
                 border: none;
                 cursor: pointer;
-                width: 60px;
-                height: 60px;
+                width: 40px;
+                height: 40px;
                 font-size: 30px;
                 color: white;
                 border-radius: 10px;
@@ -234,6 +235,7 @@ body.rest-mode #pomodoro-bg {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-top: 100px;
 
             }
 
@@ -245,12 +247,47 @@ body.rest-mode #pomodoro-bg {
                 z-index: 1;
             }
 
+            #settings-form {
+                visibility: hidden;
+                width: 80%;
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 20px;
+                border-radius: 10px;
+                position: absolute;
+                top: 10px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+            }
+            
+
+                #settings-form p {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 15px;
+                }
+                
+                #settings-form label {
+                    font-size: 16px;
+                    color: rgb(70, 70, 70);
+                }
+                
+                #settings-form input {
+                    width: 50px;
+                    text-align: center;
+                    padding: 5px;
+                    border: 1px solid rgb(200, 200, 200);
+                    border-radius: 5px;
+                }
+
         body.timer-running #btn-start,
         body.rest-mode #btn-start {
             opacity: 0;
             visibility: hidden;
         }
-        body.timer-paused #btn-start {
+        body.timer-paused #btn-start,
+        body.settings-open #btn-close
+        body.settings-open #settings-form {
             opacity: 1;
             visibility: visible;
         }

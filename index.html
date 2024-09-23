@@ -36,13 +36,13 @@
                 <circle cx="50" cy="50" r="45" class="circle-progress"></circle>
                 <text id="timer-time" x="50" y="50" dy=".3rem" font-size="18">25:00</text>
                 <text id="timer-pause" x="50" y="68"  dy=".3rem" font-size="7">Pause</text>
-                <text id="timer-work" x="50" y="68" dy=".3rem" font-size="7">Work</text>
-                <text id="timer-rest" x="50" y="68" dy=".3rem" font-size="7">Rest</text>
+                <text id="timer-work" x="50" y="68" dy=".3rem" font-size="7">Travail</text>
+                <text id="timer-rest" x="50" y="68" dy=".3rem" font-size="7">Pause</text>
             </svg>
         </div>
 
         <div id="timer-session">
-            <p id="session-label">Completed work session</p>
+            <p id="session-label">Session de travail faite</p>
             <p id="session-completed">0</p>
         </div>
 
@@ -53,6 +53,17 @@
                 <button id="btn-reset"><span class="material-symbols-outlined">restart_alt</span></button>
             </div>
             <div id="function-settings">
+                <form id="settings-form">
+                    <p>
+                        <label for="work-duration">Travail</label>
+                        <input type="number" name="work" id="work-duration" value="25" />
+                    </p>
+                    <p>
+                        <label for="rest-duration">Pause</label>
+                        <input type="number" name="rest" id="rest-duration" value="5" />
+                    </p>
+
+                </form>
                 <button id="btn-settings"><span class="material-symbols-outlined">settings</span></button>
                 <button id="btn-close"><span class="material-symbols-outlined">close</span></button>
             </div>

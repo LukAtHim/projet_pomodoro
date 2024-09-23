@@ -13,7 +13,7 @@ let intervalId
 const eltCompletedSessions = document.getElementById('session-completed')
 let countCompletedSessions = 0
 
-funcUpdateProgress()
+funcUpdateCircleProgress()
 
 const startBtn = document.getElementById('btn-start')
 startBtn.addEventListener('click', () => {
@@ -45,6 +45,22 @@ resetBtn.addEventListener('click', () => {
     location.reload()
 })
 
+const settingsBtn = document.getElementById('btn-settings');
+if (settingsBtn) {
+    const body = document.body;
+
+    settingsBtn.addEventListener('click', () => {
+        body.classList.add('settings-open');
+    });
+} else {
+    console.error('Le bouton "btn-settings" est introuvable.');
+}
+
+const closeBtn = document.getElementById('btn-close')
+closeBtn.addEventListener('click', () => {
+    // body.classList.remove('settings-open')
+})
+
 function funcUpdateTimer() {
     if(!isPaused) {
         remainingTime--
@@ -68,11 +84,11 @@ function funcUpdateTimer() {
             isPaused = false
         }
         
-        funcUpdateProgress();
+        funcUpdateCircleProgress();
     }
 }
 
-function funcUpdateProgress() {
+function funcUpdateCircleProgress() {
     const radius = 45
     const circumference = 2 * Math.PI * radius
 
